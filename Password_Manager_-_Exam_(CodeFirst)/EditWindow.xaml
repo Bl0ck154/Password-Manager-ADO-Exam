@@ -1,0 +1,23 @@
+﻿<Window x:Class="Password_Manager___Exam__CodeFirst_.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Password_Manager___Exam__CodeFirst_"
+        mc:Ignorable="d"
+        Title="Edit account" Height="330" Width="330">
+	<StackPanel Margin="2">
+		<Label>Title</Label>
+		<TextBox Name="TitleTextbox"></TextBox>
+		<Label>Description</Label>
+		<TextBox Name="DescriptionTextbox" ></TextBox>
+		<Label>URL</Label>
+		<TextBox Name="URLTextbox"></TextBox>
+		<Label>Login</Label>
+		<TextBox Name="LoginTextbox"></TextBox>
+		<Label>Password</Label>
+		<TextBox Name="PasswordTextbox"></TextBox>
+		<CheckBox Name="EncryptChkbox">Encrypt password</CheckBox>
+		<Button Name="Submit" Click="Submit_Click" Margin="3">Submit</Button>
+	</StackPanel>
+</Window>

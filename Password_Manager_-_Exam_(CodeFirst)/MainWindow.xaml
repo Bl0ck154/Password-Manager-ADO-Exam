@@ -6,7 +6,87 @@
         xmlns:local="clr-namespace:Password_Manager___Exam__CodeFirst_"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+	<Window.Resources>
+		<Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type TextBox}">
+						<Grid>
+							<TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource" 
+                                 Background="Transparent" 
+                                 Panel.ZIndex="2" />
+							<TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+								<TextBox.Style>
+									<Style TargetType="{x:Type TextBox}">
+										<Setter Property="Foreground" Value="Transparent"/>
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+												<Setter Property="Foreground" Value="LightGray"/>
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</TextBox.Style>
+							</TextBox>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
     <Grid>
-        
-    </Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition Height="5*"/>
+		</Grid.RowDefinitions>
+		<DataGrid Name="DataGrid" Grid.Row="2" Grid.ColumnSpan="3" SelectionMode="Single" AutoGenerateColumns="False"
+				   IsReadOnly="True" ColumnWidth="*" PreviewKeyDown="DataGrid_KeyDown"
+				  SelectionChanged="DataGrid_SelectionChanged" MouseDoubleClick="DataGrid_MouseDoubleClick">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Title"  Binding="{Binding Title}"/>
+				<DataGridTextColumn Header="Description"  Binding="{Binding Description}"/>
+				<DataGridTextColumn Header="URL"  Binding="{Binding Url}"/>
+				<DataGridTextColumn Header="Login"  Binding="{Binding Login}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<Button Name="AddBtn" Grid.Column="0" Click="Add_Click" Margin="5">Add</Button>
+		<Button Name="EditBtn" Grid.Column="1" Click="EditBtn_Click" IsEnabled="False" Margin="5">Edit</Button>
+		<Button Name="RemoveBtn" Grid.Column="2" Click="Remove_Click" IsEnabled="False" Margin="5">Remove</Button>
+		<Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Label Grid.Row="1"  HorizontalContentAlignment="Center">Search</Label>
+			<Button Name="StatBtn" Grid.Column="1" Click="StatBtn_Click">Statistics</Button>
+			<Button Name="regBtn" Grid.Column="0" Click="regBtn_Click">Logout</Button>
+			<TextBox Grid.Row="1" Grid.Column="1" Name="TitleSearch" KeyDown="SearchEnterKey"
+					 Style="{StaticResource placeHolder}" Tag="Title" Margin="2"></TextBox>
+			<TextBox Grid.Row="1" Grid.Column="2" Name="DescrSearch" KeyDown="SearchEnterKey"
+					 Style="{StaticResource placeHolder}" Tag="Description" Margin="2"></TextBox>
+			<TextBox Grid.Row="1" Grid.Column="3" Name="UrlSearch" KeyDown="SearchEnterKey"
+					 Style="{StaticResource placeHolder}" Tag="Site Url" Margin="2"></TextBox>
+			<TextBox Grid.Row="1" Grid.Column="4" Name="LoginSearch" KeyDown="SearchEnterKey"
+					 Style="{StaticResource placeHolder}" Tag="Login" Margin="2"></TextBox>
+			<Button Name="SearchBtn" Grid.Row="1" Grid.Column="5" Click="Search_Click" Margin="2">>></Button>
+		</Grid>
+	</Grid>
 </Window>

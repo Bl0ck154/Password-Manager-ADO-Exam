@@ -1,0 +1,24 @@
+﻿<Window x:Class="Password_Manager___Exam__CodeFirst_.StatsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Password_Manager___Exam__CodeFirst_"
+        mc:Ignorable="d"
+        Title="Stats" Height="450" Width="800">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="8*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Button Grid.Column="0" Margin="5" Click="Button_Click">Login stats</Button>
+		<Button Grid.Column="1" Margin="5" Click="Button_Click_1">Password stats</Button>
+		<Button Grid.Column="2" Margin="5" Click="Button_Click_2">Login with password stats</Button>
+		<DataGrid Grid.Row="1" Grid.ColumnSpan="3" Name="DataGrid" IsReadOnly="True" ColumnWidth="*"></DataGrid>
+    </Grid>
+</Window>
